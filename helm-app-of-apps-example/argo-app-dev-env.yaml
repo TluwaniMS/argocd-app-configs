@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-parameters-dev-app
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    helm:
+      parameters:
+        - name: 'envPrefix'
+          value: parameters-dev
+        - name: 'deployment.replicas'
+          value: "2"
+        - name: 'container.image'
+          value: "basic-node-web-server"
+        - name: 'container.tag'
+          value: "v1.3.0"   
+    repoURL: https://github.com/TluwaniMS/basic-node-js-web-server-deployment
+    targetRevision: master
+    path: helm-app-manifests/basic-node-js-web-server
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: parameters-dev-app-of-apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

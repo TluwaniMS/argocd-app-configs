@@ -1,0 +1,10 @@
+{
+  "name": "staging",
+  "helmParameters": {
+    "envPrefix": "inline-staging",
+    "deployment": { "replicas": "3" },
+    "container": { "image": "basic-node-web-server", "tag": "v1.3.0" }
+  },
+  "loc": "helm-app-manifests/basic-node-js-web-server",
+  "server": "https://kubernetes.default.svc"
+}

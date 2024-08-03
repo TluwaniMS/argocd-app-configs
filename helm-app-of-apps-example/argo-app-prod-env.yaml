@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: value-file-prod-app
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    helm:
+      valueFiles:
+        - prod-values.yaml
+    repoURL: https://github.com/TluwaniMS/basic-node-js-web-server-deployment
+    targetRevision: master
+    path: helm-app-manifests/basic-node-js-web-server
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: value-file-prod-app-of-apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

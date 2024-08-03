@@ -1,0 +1,5 @@
+{
+  "name": "test",
+  "loc": "basic-node-js-web-server-testing",
+  "server": "https://kubernetes.default.svc"
+}

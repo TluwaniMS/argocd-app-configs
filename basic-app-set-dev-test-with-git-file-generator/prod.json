@@ -1,0 +1,6 @@
+{
+  "name": "prod",
+  "valueFiles": "prod-values.yaml",
+  "loc": "helm-app-manifests/basic-node-js-web-server",
+  "server": "https://kubernetes.default.svc"
+}
