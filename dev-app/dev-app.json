@@ -1,0 +1,4 @@
+{
+  "loc": "kubernetes-manifests",
+  "server": "https://kubernetes.default.svc"
+}
